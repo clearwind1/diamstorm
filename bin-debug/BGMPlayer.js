@@ -14,6 +14,9 @@ var BGMPlayer = (function () {
     /**设置音量 */
     p.setVolme = function (value) {
         this.volume = value;
+        if (this.curbgmtag == -1) {
+            return;
+        }
         GameData._i().gamesound[this.curbgmtag].setvolume(this.volume);
     };
     /**播放背景音乐 */

@@ -3,20 +3,28 @@
  */
 
 class StartGameScene extends GameUtil.BassPanel {
-    
+
     public constructor() {
         super();
     }
 
     public init() {
         BGMPlayer._i().play(SoundName.startgamebgm);
-        var param: Object = {
-            clickopenid: '1'
-        }
-        GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getuserid", this.show, this);
+        //BGMPlayer._i().play(SoundName.gamebgm);
+        // if (GameConfig._i().bgamemusic) {
+        //     //window['playaudio']();
+        // }
+        
+        // var param: Object = {
+        //     clickopenid: '1'
+        // }
+        // GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getuserid", this.show, this);
+        var data: any = {
+            'code': 1
+        };
+        this.show(data);
     }
-    private show(data:any)
-    {
+    private show(data: any) {
         if (data['code'] == 1) {
             this.showbg();
             //PlayerData._i().UserInfo.ID = data['userid'];
@@ -28,18 +36,18 @@ class StartGameScene extends GameUtil.BassPanel {
     }
     /**显示背景界面 */
     private showbg() {
-       //http://h5.sxd55.com/config/moregamename.json
-        GameUtil.getText();
-
         
-        var shap: egret.Shape = GameUtil.createRect(0, 0, this.mStageW, this.mStageH, 1, 0xf5b440);
-        this.addChild(shap);
         var bg: MyBitmap = new MyBitmap(RES.getRes('startgamebg_jpg'), this.mStageW / 2, this.mStageH / 2);
         this.addChild(bg);
+        var shap: MyBitmap = new MyBitmap(RES.getRes('startgamebg_jpg'), 0, 0);
+        shap.setanchorOff(0, 0);
+        shap.width = this.mStageW;
+        shap.height = this.mStageH;
+        this.addChild(shap);
 
         //界面按钮
-        var btnname: string[] = ['startgamebtn_png', 'rankbtn_png', 'helpbtn_png', 'settingbtn_png', 'sharebtn_png','moregamebtn_png'];
-        var fun: Function[] = [this.startgame, this.gamerank, this.gamehelp, this.setting, this.share,this.moregame];
+        var btnname: string[] = ['startgamebtn_png', 'rankbtn_png', 'helpbtn_png', 'settingbtn_png', 'sharebtn_png', 'moregamebtn_png'];
+        var fun: Function[] = [this.startgame, this.gamerank, this.gamehelp, this.setting, this.share, this.moregame];
         var btnpox: number[] = [375, 257, 375, 385, 508, 375];
         var btnpoy: number[] = [580, 1022, 712, 1022, 1022, 845];
         for (var i: number = 0; i < btnname.length; i++) {
@@ -101,10 +109,10 @@ class StartGameScene extends GameUtil.BassPanel {
     /**游戏分享 */
     private share() {
         GameUtil.trace('share');
-         if (!GameUtil.isSomeType(GameConfig.WeiXinstr)) {
+        if (!GameUtil.isSomeType(GameConfig.WeiXinstr)) {
             this.addChild(new GameUtil.TipsPanel(null, '请在微信中打开', true));
-         } else {
-             this.addChild(new SharePageShow());
+        } else {
+            this.addChild(new SharePageShow());
         }
     }
     /**更多游戏 */

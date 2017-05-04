@@ -9,38 +9,42 @@ var GameOverPageShow = (function (_super) {
     }
     var d = __define,c=GameOverPageShow,p=c.prototype;
     p.show = function () {
-        if (!GameConfig.DEBUG) {
-            var data = {
-                'code': 1
-            };
-            this.showscene(data);
-        }
-        else {
-        }
+        var data = {
+            'code': 1
+        };
+        this.showscene(data);
     };
     /**显示 */
     p.showscene = function (data) {
-        console.log('data-====', data['msg']);
+        //console.log('data-====', data['msg']);
         if (data['code'] == 1) {
-            var gameoverbg = new MyBitmap(RES.getRes('gameoverbg_png'), this.mStageW / 2, this.mStageH / 2);
-            this.addChild(gameoverbg);
-            var gameovertext = new MyBitmap(RES.getRes('gameovertext_png'));
-            this.addChild(gameovertext);
-            GameUtil.relativepos(gameovertext, gameoverbg, 233, 61);
-            /**创建三个按钮 */
-            var btname = 'normalbtn_png';
-            var btntext = ['炫耀', '退出', '重来'];
-            var btnfun = [this.share, this.turnback, this.relife];
-            for (var i = 0; i < 3; i++) {
-                var btn = new GameUtil.Menu(this, btname, btname, btnfun[i]);
-                btn.addButtonText(btntext[i], 35);
-                this.addChild(btn);
-                btn.getBtnText().textColor = 0xffffff;
-                btn.getBtnText().$setBold(true);
-                GameUtil.relativepos(btn, gameoverbg, 75 + i * 155, 470);
+            console.log('gl:', GameData._i().GameLevel, '-------gs:', GameData._i().gamescore);
+            var newcored = GameData._i().GameLevel < GameData._i().gamescore ? true : false;
+            var bgname = 'gameoverbg_png';
+            if (newcored) {
+                GameData._i().GameLevel = GameData._i().gamescore;
+                GameUtil.saveLocalData(GameConfig.GAMELEVEL, '' + GameData._i().GameLevel);
+                bgname = 'newgameoverbg_png';
             }
-            /**玩家数据显示 */
-            var gamescene = this.parent;
+            var gameoverbg = new MyBitmap(RES.getRes(bgname), this.mStageW / 2, this.mStageH / 2);
+            this.addChild(gameoverbg);
+            /**创建按钮 */
+            GameData._i().gamesound[SoundName.newcored].play();
+            var scroetext = new GameUtil.MyTextField(gameoverbg.x, gameoverbg.y + 30, 60);
+            scroetext.setanchorOff(0.5, 0.5);
+            scroetext.$setTextAlign(egret.HorizontalAlign.CENTER);
+            scroetext.setText("" + GameData._i().gamescore); //GameData._i().gamescore;
+            scroetext.textColor = 0xffffff;
+            scroetext.stroke = 5;
+            scroetext.strokeColor = 0x73cc97;
+            this.addChild(scroetext);
+            var btname = ['sharebtn_png', 'restartbtn_png', 'returnbtn_png'];
+            var btnfun = [this.share, this.relife, this.turnback];
+            for (var i = 0; i < 3; i++) {
+                var btn = new GameUtil.Menu(this, btname[i], btname[i], btnfun[i]);
+                this.addChild(btn);
+                GameUtil.relativepos(btn, gameoverbg, 95 + 160 * i, 320);
+            }
         }
         else {
             data['msg'];
@@ -58,8 +62,9 @@ var GameOverPageShow = (function (_super) {
     /**返回开始界面 */
     p.turnback = function () {
         // PlayerData._i().initdata();
+        GameData._i().currgamescore = GameData._i().gamescore;
         GameData._i().GameOver = false;
-        GameData._i().GameLevel = 0;
+        GameData._i().gamescore = 0;
         this.close();
         GameUtil.GameScene.runscene(new StartGameScene());
     };
@@ -67,8 +72,8 @@ var GameOverPageShow = (function (_super) {
     p.relife = function () {
         //PlayerData._i().initdata();
         GameData._i().GameOver = false;
-        GameData._i().GameLevel = 0;
-        this.parent.reset();
+        GameData._i().gamescore = 0;
+        this.parent.restart();
         this.close();
     };
     return GameOverPageShow;

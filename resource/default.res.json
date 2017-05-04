@@ -5,7 +5,7 @@
 			"name": "preloading"
 		},
 		{
-			"keys": "startgamebg_jpg,startgamebtn_png,helpbtn_png,sharebtn_png,moregamebtn_png,rankbtn_png,settingbtn_png,closebtn_png,settingbg_png,settingswitch_png,settingswitchoff_png,settingswitchon_png,beatt_mp3,bowatt_mp3,click_mp3,die_mp3,enemyatt_mp3,fail_mp3,gamebgm_mp3,goal_mp3,spearatt_mp3,startgamebgm_mp3,rankcontain0_png,rankcontain1_png,rankcontain2_png,rankcontain3_png,rankcontain4_png,rankcontain5_png,rankcontain6_png,ranknum_png,rankbg_png,helpbg_png,moregamebg_png,changebtn_png,czlongzrun_png,lookcarechild_png,sanguorun_png,savequyuan_png,sjlpicka_png,sjlrecard_png,bubblefightv02_png,waitimg_png",
+			"keys": "startgamebg_jpg,startgamebtn_png,helpbtn_png,sharebtn_png,moregamebtn_png,rankbtn_png,settingbtn_png,closebtn_png,settingbg_png,settingswitch_png,settingswitchoff_png,settingswitchon_png,rankcontain0_png,rankcontain1_png,rankcontain2_png,rankcontain3_png,rankcontain4_png,rankcontain5_png,rankcontain6_png,ranknum_png,rankbg_png,helpbg_png,moregamebg_png,changebtn_png,czlongzrun_png,lookcarechild_png,sanguorun_png,savequyuan_png,sjlpicka_png,sjlrecard_png,bubblefightv02_png,waitimg_png,moregamename_json,gamebg_jpg,diamcont_png,restartbtn_png,returnbtn_png,diam2_1_png,diam4_1_png,diam8_1_png,diam16_1_png,diam32_1_png,diam64_1_png,diam128_1_png,diam256_1_png,diam512_1_png,diam1024_1_png,diam2048_1_png,diam4096_1_png,gameoverbg_png,nobtn_png,yesbtn_png,newgameoverbg_png,sharetip_png,comble_mp3,move_mp3,newcored_mp3,click_mp3,restartbg_png",
 			"name": "preload"
 		}
 	],
@@ -79,56 +79,6 @@
 			"name": "settingswitchon_png",
 			"type": "image",
 			"url": "assets/settingswitchon.png"
-		},
-		{
-			"name": "beatt_mp3",
-			"type": "sound",
-			"url": "assets/sound/beatt.mp3"
-		},
-		{
-			"name": "bowatt_mp3",
-			"type": "sound",
-			"url": "assets/sound/bowatt.mp3"
-		},
-		{
-			"name": "click_mp3",
-			"type": "sound",
-			"url": "assets/sound/click.mp3"
-		},
-		{
-			"name": "die_mp3",
-			"type": "sound",
-			"url": "assets/sound/die.mp3"
-		},
-		{
-			"name": "enemyatt_mp3",
-			"type": "sound",
-			"url": "assets/sound/enemyatt.mp3"
-		},
-		{
-			"name": "fail_mp3",
-			"type": "sound",
-			"url": "assets/sound/fail.mp3"
-		},
-		{
-			"name": "gamebgm_mp3",
-			"type": "sound",
-			"url": "assets/sound/gamebgm.mp3"
-		},
-		{
-			"name": "goal_mp3",
-			"type": "sound",
-			"url": "assets/sound/goal.mp3"
-		},
-		{
-			"name": "spearatt_mp3",
-			"type": "sound",
-			"url": "assets/sound/spearatt.mp3"
-		},
-		{
-			"name": "startgamebgm_mp3",
-			"type": "sound",
-			"url": "assets/sound/startgamebgm.mp3"
 		},
 		{
 			"name": "rankcontain0_png",
@@ -229,6 +179,121 @@
 			"name": "waitimg_png",
 			"type": "image",
 			"url": "assets/othergameicon/waitimg.png"
+		},
+		{
+			"name": "moregamename_json",
+			"type": "json",
+			"url": "config/moregamename.json"
+		},
+		{
+			"name": "gamebg_jpg",
+			"type": "image",
+			"url": "assets/gamebg.jpg"
+		},
+		{
+			"name": "diamcont_png",
+			"type": "image",
+			"url": "assets/diamcont.png"
+		},
+		{
+			"name": "restartbtn_png",
+			"type": "image",
+			"url": "assets/restartbtn.png"
+		},
+		{
+			"name": "returnbtn_png",
+			"type": "image",
+			"url": "assets/returnbtn.png"
+		},
+		{
+			"name": "diam2_1_png",
+			"type": "image",
+			"url": "assets/diam/diam2_1.png"
+		},
+		{
+			"name": "diam4_1_png",
+			"type": "image",
+			"url": "assets/diam/diam4_1.png"
+		},
+		{
+			"name": "diam8_1_png",
+			"type": "image",
+			"url": "assets/diam/diam8_1.png"
+		},
+		{
+			"name": "diam16_1_png",
+			"type": "image",
+			"url": "assets/diam/diam16_1.png"
+		},
+		{
+			"name": "diam32_1_png",
+			"type": "image",
+			"url": "assets/diam/diam32_1.png"
+		},
+		{
+			"name": "diam64_1_png",
+			"type": "image",
+			"url": "assets/diam/diam64_1.png"
+		},
+		{
+			"name": "diam128_1_png",
+			"type": "image",
+			"url": "assets/diam/diam128_1.png"
+		},
+		{
+			"name": "diam256_1_png",
+			"type": "image",
+			"url": "assets/diam/diam256_1.png"
+		},
+		{
+			"name": "diam512_1_png",
+			"type": "image",
+			"url": "assets/diam/diam512_1.png"
+		},
+		{
+			"name": "diam1024_1_png",
+			"type": "image",
+			"url": "assets/diam/diam1024_1.png"
+		},
+		{
+			"name": "diam2048_1_png",
+			"type": "image",
+			"url": "assets/diam/diam2048_1.png"
+		},
+		{
+			"name": "diam4096_1_png",
+			"type": "image",
+			"url": "assets/diam/diam4096_1.png"
+		},
+		{
+			"name": "gameoverbg_png",
+			"type": "image",
+			"url": "assets/gameoverbg.png"
+		},
+		{
+			"name": "nobtn_png",
+			"type": "image",
+			"url": "assets/nobtn.png"
+		},
+		{
+			"name": "yesbtn_png",
+			"type": "image",
+			"url": "assets/yesbtn.png"
+		},
+		{
+			"name": "newgameoverbg_png",
+			"type": "image",
+			"url": "assets/newgameoverbg.png"
+		},
+		{
+			"name": "sharetip_png",
+			"type": "image",
+			"url": "assets/sharetip.png"
+		},
+		{
+			"name": "restartbg_png",
+			"type": "image",
+			"url": "assets/restartbg.png"
 		}
 	]
 }

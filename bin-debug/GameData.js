@@ -12,7 +12,9 @@ var GameData = (function () {
         this.GamePause = false;
         this.GameOver = false;
         this.isLoadingend = false;
-        this.GameLevel = 0;
+        this.gamescore = 0;
+        this.currgamescore = 0;
+        this.GameLevel = Number(GameUtil.readLocalData(GameConfig.GAMELEVEL));
     };
     GameData._i = function () {
         return (this._inst = (this._inst == null ? new GameData() : this._inst));

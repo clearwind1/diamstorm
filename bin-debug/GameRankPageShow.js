@@ -2,6 +2,16 @@
  * Create by hardy on 16/12/21
  * 游戏排行榜页面
  */
+var Ranksprite = (function () {
+    function Ranksprite() {
+        this.init();
+    }
+    var d = __define,c=Ranksprite,p=c.prototype;
+    p.init = function () {
+    };
+    return Ranksprite;
+}());
+egret.registerClass(Ranksprite,'Ranksprite');
 var GameRankPageShow = (function (_super) {
     __extends(GameRankPageShow, _super);
     function GameRankPageShow() {
@@ -9,12 +19,22 @@ var GameRankPageShow = (function (_super) {
     }
     var d = __define,c=GameRankPageShow,p=c.prototype;
     p.show = function () {
-        var param = {};
-        GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getrank", this.getRank, this);
+        this.ranklish = [];
+        for (var i = 0; i < 20; i++) {
+            var rd = RandomUtils.limitInteger(17894, 8298764);
+            this.ranklish[i] = new Ranksprite();
+            this.ranklish[i].rankarr = rd;
+            this.ranklish[i].sxdid = i + 1;
+        }
+        var param = {
+            'code': 1
+        };
+        //GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getrank", this.getRank, this);
+        this.getRank(param);
     };
     p.getRank = function (rankdata) {
         if (rankdata['code'] == 1) {
-            var result = rankdata['result'];
+            //var result = rankdata['result'];
             var rankbg = new MyBitmap(RES.getRes('rankbg_png'), this.mStageW / 2, this.mStageH / 2);
             this.addChild(rankbg);
             // var textt: string[] = ['序号', 'ID', '总分'];
@@ -25,11 +45,15 @@ var GameRankPageShow = (function (_super) {
             //     this.addChild(text);
             //     GameUtil.relativepos(text, rankbg, 108 + t * 190, 111);
             // }
+            this.ranklish[19].rankarr = (GameUtil.MAX(GameData._i().currgamescore, 10256));
+            this.ranklish.sort(function (a, b) {
+                return b.rankarr - a.rankarr;
+            });
             var rankcontainsv = new GameUtil.ScrollView(518, 330);
             this.addChild(rankcontainsv);
             GameUtil.relativepos(rankcontainsv, rankbg, 12, 142);
-            console.log('result====', result.length);
-            for (var i = 0; i < result.length; i++) {
+            //console.log('result====', result.length);
+            for (var i = 0; i < 20; i++) {
                 var coverb = new MyBitmap(RES.getRes('rankcontain' + (i % 7) + '_png'), 259, 26 + i * 64);
                 rankcontainsv.putItem(coverb);
                 var ranknum = new MyBitmap(RES.getRes('ranknum_png'), 95, 30 + i * 64);
@@ -39,11 +63,11 @@ var GameRankPageShow = (function (_super) {
                 ranknt.textColor = 0xa96100;
                 rankcontainsv.putItem(ranknt);
                 var playname = new GameUtil.MyTextField(235, 26 + i * 64, 40, 0.5);
-                playname.setText('sxd-' + result[i]['id']);
+                playname.setText('sxd-' + this.ranklish[i].sxdid);
                 playname.textColor = 0xffffff;
                 rankcontainsv.putItem(playname);
                 var playscore = new GameUtil.MyTextField(383, 26 + i * 64, 40, 0.5);
-                playscore.setText('' + result[i]['score']);
+                playscore.setText('' + this.ranklish[i].rankarr);
                 playscore.textColor = 0xffffff;
                 rankcontainsv.putItem(playscore);
             }

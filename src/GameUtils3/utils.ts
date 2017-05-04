@@ -219,15 +219,17 @@ module GameUtil {
         intervalarr = [];
     }
 
-    export function getText() {
-        var url = "http://h5.sxd55.com/config/moregamename.json";
+    export function getText(url:string):any {
+       // var url = "http://h5.sxd55.com/config/moregamename.json";
         var request: egret.HttpRequest = new egret.HttpRequest();
         var respHandler = function (evt: egret.Event): void {
             switch (evt.type) {
                 case egret.Event.COMPLETE:
                     var request: egret.HttpRequest = evt.currentTarget;
                     console.log("respHandler:n", request.response);
-                    break;
+                    return request.response;
+                    
+                    //break;
                 case egret.IOErrorEvent.IO_ERROR:
                     console.log("respHandler io error");
                     break;

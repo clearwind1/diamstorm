@@ -9,10 +9,18 @@ var StartGameScene = (function (_super) {
     var d = __define,c=StartGameScene,p=c.prototype;
     p.init = function () {
         BGMPlayer._i().play(SoundName.startgamebgm);
-        var param = {
-            clickopenid: '1'
+        //BGMPlayer._i().play(SoundName.gamebgm);
+        // if (GameConfig._i().bgamemusic) {
+        //     //window['playaudio']();
+        // }
+        // var param: Object = {
+        //     clickopenid: '1'
+        // }
+        // GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getuserid", this.show, this);
+        var data = {
+            'code': 1
         };
-        GameUtil.Http.getinstance().send(param, "/" + GameConfig.SERVERNAME + "/getuserid", this.show, this);
+        this.show(data);
     };
     p.show = function (data) {
         if (data['code'] == 1) {
@@ -24,12 +32,13 @@ var StartGameScene = (function (_super) {
     };
     /**显示背景界面 */
     p.showbg = function () {
-        //http://h5.sxd55.com/config/moregamename.json
-        GameUtil.getText();
-        var shap = GameUtil.createRect(0, 0, this.mStageW, this.mStageH, 1, 0xf5b440);
-        this.addChild(shap);
         var bg = new MyBitmap(RES.getRes('startgamebg_jpg'), this.mStageW / 2, this.mStageH / 2);
         this.addChild(bg);
+        var shap = new MyBitmap(RES.getRes('startgamebg_jpg'), 0, 0);
+        shap.setanchorOff(0, 0);
+        shap.width = this.mStageW;
+        shap.height = this.mStageH;
+        this.addChild(shap);
         //界面按钮
         var btnname = ['startgamebtn_png', 'rankbtn_png', 'helpbtn_png', 'settingbtn_png', 'sharebtn_png', 'moregamebtn_png'];
         var fun = [this.startgame, this.gamerank, this.gamehelp, this.setting, this.share, this.moregame];

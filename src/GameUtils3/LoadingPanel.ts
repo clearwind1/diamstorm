@@ -3,7 +3,6 @@
  */
 module GameUtil
 {
-
     /**
      * 加载进度界面
      * Process interface loading

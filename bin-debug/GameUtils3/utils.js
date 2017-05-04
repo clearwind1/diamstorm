@@ -240,15 +240,16 @@ var GameUtil;
         intervalarr = [];
     }
     GameUtil.clearinterval = clearinterval;
-    function getText() {
-        var url = "http://h5.sxd55.com/config/moregamename.json";
+    function getText(url) {
+        // var url = "http://h5.sxd55.com/config/moregamename.json";
         var request = new egret.HttpRequest();
         var respHandler = function (evt) {
             switch (evt.type) {
                 case egret.Event.COMPLETE:
                     var request = evt.currentTarget;
                     console.log("respHandler:n", request.response);
-                    break;
+                    return request.response;
+                //break;
                 case egret.IOErrorEvent.IO_ERROR:
                     console.log("respHandler io error");
                     break;

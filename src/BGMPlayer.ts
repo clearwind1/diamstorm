@@ -16,6 +16,9 @@ class BGMPlayer {
     /**设置音量 */
     public setVolme(value: number) {
         this.volume = value;
+        if (this.curbgmtag == -1) {
+            return;
+        }
         GameData._i().gamesound[this.curbgmtag].setvolume(this.volume);
     }
     /**播放背景音乐 */

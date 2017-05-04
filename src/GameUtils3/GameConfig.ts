@@ -4,7 +4,7 @@
  */
 
 /**声音文件枚举 */
-enum SoundName { startgamebgm, gamebgm, bowatt, enemyatt, spearatt, die, fail, goal, beatt, click, end };
+enum SoundName { gamebgm,startgamebgm,comble, move, newcored, click, end };
 /**场景转换效果，对应：无效果，从左往右，淡入淡出，向两边分开 */
 enum SceneEffect { NullAction, CrossLeft, TransAlpha, OpenDoor };
 
@@ -17,10 +17,11 @@ class GameConfig {
     public static FIRSTGAME: string = 'firstgame';          //第一次进游戏标示
     public static GAMESOUND: string = 'gamesound';          //游戏音效
     public static GAMEMUSIC: string = 'gamemusic';          //游戏音乐
+    public static GAMELEVEL: string = 'gamelevel';          //游戏等级
     public static SoundName: string[] =                     //声音文件名
     [
-        'startgamebgm.mp3', 'gamebgm.mp3', 'bowatt.mp3', 'enemyatt.mp3', 'spearatt.mp3',
-        'die.mp3', 'fail.mp3', 'goal.mp3', 'beatt.mp3', 'click.mp3'
+         'startgamebgm.mp3','gamebgm.mp3','comble.mp3', 'move.mp3', 'newcored.mp3','click.mp3'
+        // 'die.mp3', 'fail.mp3', 'goal.mp3', 'beatt.mp3', 'click.mp3'
     ];                 
     public static MoreGameName: string[] =                  //更多游戏名称
     [
@@ -43,10 +44,7 @@ class GameConfig {
     /**基本配置结束 */
 
     /**开发游戏配置 */
-    public static PLAYERLIFE: number = 20;          //玩家血量值
-    public static PLAYERENERGY: number = 20;        //玩家能量值
-    public static PLAYERSPEARPOW: number = 2;       //玩家近身攻击力
-    public static PLAYERBOWPOW: number = 1;         //玩家远程攻击力
+    public static DICBW = 160;          //每个块的间距
     /**开发游戏配置结束 */
 
     public constructor() {
@@ -60,6 +58,7 @@ class GameConfig {
             GameUtil.saveLocalData(GameConfig.FIRSTGAME, '1');
             GameUtil.saveLocalData(GameConfig.GAMESOUND, '1');
             GameUtil.saveLocalData(GameConfig.GAMEMUSIC, '1');
+            GameUtil.saveLocalData(GameConfig.GAMELEVEL, '0');
             this.bfirstplay = true;
         }
         this.bgamemusic = parseInt(GameUtil.readLocalData(GameConfig.GAMEMUSIC)) == 1 ? true : false;

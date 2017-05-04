@@ -51,6 +51,8 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
+        GameConfig.MoreGameName = RES.getRes('moregamename_json');
+        console.log('GameConfig.MoreGameName======', GameConfig.MoreGameName);
         GameUtil.Http.getinstance();
         GameUtil.GameScene.runscene(new StartGameScene());
     };

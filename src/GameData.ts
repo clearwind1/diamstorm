@@ -10,6 +10,8 @@ class GameData {
     public isLoadingend: boolean;           //游戏加载进度结束标志
     public gamesound: MySound[] = [];       //游戏声音
     public GameLevel: number;               //游戏等级
+    public gamescore: number;
+    public currgamescore: number;
 
     public constructor() {
         this.init();
@@ -20,7 +22,9 @@ class GameData {
         this.GamePause = false;
         this.GameOver = false;
         this.isLoadingend = false;
-        this.GameLevel = 0;
+        this.gamescore = 0;
+        this.currgamescore = 0;
+        this.GameLevel = Number(GameUtil.readLocalData(GameConfig.GAMELEVEL));
     }
 
     private static _inst:GameData = null;

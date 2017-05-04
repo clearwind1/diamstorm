@@ -68,13 +68,14 @@ class Main extends egret.DisplayObjectContainer {
             GameUtil.GameScene.init(this.stage);
             GameUtil.GameScene.runscene(new GameUtil.LoadingPanel(this.createGameScene, this, 0, 0));
         }
-
     }
     /**
      * 创建游戏场景
      * Create a game scene
      */
     private createGameScene(): void {
+        GameConfig.MoreGameName = RES.getRes('moregamename_json');
+        console.log('GameConfig.MoreGameName======', GameConfig.MoreGameName);
         GameUtil.Http.getinstance();
         GameUtil.GameScene.runscene(new StartGameScene());
 

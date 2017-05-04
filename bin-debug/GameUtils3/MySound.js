@@ -21,11 +21,14 @@ var MySound = (function () {
     p.play = function (startTime, loops) {
         if (startTime === void 0) { startTime = 0; }
         if (loops === void 0) { loops = 1; }
+        //alert('isread');
         if (this.soundtype == egret.Sound.EFFECT && !GameConfig._i().bgamesound) {
             return;
         }
+        //alert('isplay');
         var tsound = this.sound;
         if (this.isadddone) {
+            //alert('isdone');
             this.soundchannel = tsound.play(startTime, loops);
         }
     };
